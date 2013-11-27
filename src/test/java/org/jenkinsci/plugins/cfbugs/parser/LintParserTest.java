@@ -62,54 +62,6 @@ public class LintParserTest extends TestCase {
         assertUnknownIssue(a);
     }
 
-    // Explanations and context info should be available from r21
-    public void testParser_post_r21() throws Exception {
-        List<LintAnnotation> annotations = parseResults("lint-results_r21.xml");
-        assertEquals(3, annotations.size());
-
-        LintAnnotation a = annotations.get(0);
-        assertEquals("&lt;uses-sdk&gt; tag should specify a target API level (the highest "
-                + "verified version; when running on later versions, compatibility behaviors may "
-                + "be enabled) with android:targetSdkVersion=&quot;?&quot;", a.getMessage());
-        assertEquals(Priority.NORMAL, a.getPriority());
-        assertEquals("AndroidManifest.xml", a.getFileName());
-        assertEquals(9, a.getPrimaryLineNumber());
-        assertEquals("UsesMinSdkAttributes", a.getType());
-        assertEquals("Correctness", a.getCategory());
-        assertEquals("The manifest should contain a `&lt;uses-sdk&gt;` element which defines the "
-                + "minimum API Level required for the application to run, as well as the target "
-                + "version (the highest API level you have tested the version for.)",
-                a.getExplanation());
-        assertEquals("    &lt;uses-sdk android:minSdkVersion=&quot;7&quot; /&gt;", //
-                a.getErrorLines().get(0));
-        assertEquals("    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~", a.getErrorLines().get(1));
-
-        a = annotations.get(1);
-        assertEquals("Found bitmap drawable res/drawable/thumbnail.png in densityless folder",
-                a.getMessage());
-        assertEquals(Priority.NORMAL, a.getPriority());
-        assertEquals("res/drawable/thumbnail.png", a.getFileName());
-        assertEquals("IconLocation", a.getType());
-        assertEquals("Usability:Icons", a.getCategory());
-        assertEquals("The res/drawable folder is intended for density-independent graphics...",
-                a.getExplanation());
-        assertEquals(0, a.getPrimaryLineNumber());
-
-        a = annotations.get(2);
-        assertEquals("Translation 'foo_bar' is missing.", a.getMessage());
-        assertEquals(Priority.NORMAL, a.getPriority());
-        assertEquals("MissingTranslation", a.getType());
-        Location[] locs = a.getLocations().toArray(new Location[0]);
-        Arrays.sort(locs, new Comparator<Location>() {
-            public int compare(Location a, Location b) {
-                return a.getFile().compareTo(b.getFile());
-            }
-        });
-        assertEquals(2, locs.length);
-        assertEquals("res/values-en-rGB/strings.xml", locs[0].getFile());
-        assertEquals("res/values-fr/strings.xml", locs[1].getFile());
-        assertEquals("res/values-de/strings.xml", a.getFileName());
-    }
 
     // Asserts that an issue has the pre-r21 'unknown issue' explanations
     private static void assertUnknownIssue(LintAnnotation a) {
