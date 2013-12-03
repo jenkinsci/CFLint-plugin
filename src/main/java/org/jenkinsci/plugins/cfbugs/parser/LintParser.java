@@ -31,6 +31,9 @@ public class LintParser extends AbstractAnnotationParser {
 	private static final String SEVERITY_ERROR = "Error";
 	
 	private static final String SEVERITY_INFORMATIONAL = "Information";
+	private static final String SEVERITY_INFO = "Info";
+	private static final String SEVERITY_WARNING = "Warning";
+	private static final String SEVERITY_WARN = "Warn";
 	
 
 	private static final long serialVersionUID = 7110868408124058985L;
@@ -200,7 +203,10 @@ public class LintParser extends AbstractAnnotationParser {
 		if (SEVERITY_FATAL.equalsIgnoreCase(severity) || SEVERITY_ERROR.equalsIgnoreCase(severity)) {
 			return Priority.HIGH;
 		}
-		if (SEVERITY_INFORMATIONAL.equalsIgnoreCase(severity)) {
+		if (SEVERITY_WARNING.equalsIgnoreCase(severity) || SEVERITY_WARN.equalsIgnoreCase(severity)) {
+			return Priority.NORMAL;
+		}
+		if (SEVERITY_INFORMATIONAL.equalsIgnoreCase(severity) || SEVERITY_INFO.equalsIgnoreCase(severity)) {
 			return Priority.LOW;
 		}
 		return Priority.NORMAL;
