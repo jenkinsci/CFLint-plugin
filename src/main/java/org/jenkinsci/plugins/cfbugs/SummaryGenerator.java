@@ -17,7 +17,7 @@ public final class SummaryGenerator {
 
         summary.append("Lint: ");
         if (issues > 0) {
-            summary.append("<a href=\"androidLintResult\">");
+            summary.append("<a href=\"cfBugsResult\">");
         }
         summary.append(Messages.CFBugs_ResultAction_Issues(issues));
         if (issues > 0) {
@@ -37,12 +37,12 @@ public final class SummaryGenerator {
     public static String createDeltaMessage(final LintResult result) {
         StringBuilder summary = new StringBuilder();
         if (result.getNumberOfNewWarnings() > 0) {
-            summary.append("<li><a href=\"androidLintResult/new\">");
+            summary.append("<li><a href=\"cfBugsResult/new\">");
             summary.append(Messages.CFBugs_ResultAction_NewIssues(result.getNumberOfNewWarnings()));
             summary.append("</a></li>");
         }
         if (result.getNumberOfFixedWarnings() > 0) {
-            summary.append("<li><a href=\"androidLintResult/fixed\">");
+            summary.append("<li><a href=\"cfBugsResult/fixed\">");
             summary.append(Messages.CFBugs_ResultAction_FixedIssues(result.getNumberOfFixedWarnings()));
             summary.append("</a></li>");
         }

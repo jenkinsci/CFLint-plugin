@@ -68,7 +68,7 @@ public class LintResult extends BuildResult {
 
     @Override
     protected String getSerializationFileName() {
-        return "android-lint-issues.xml";
+        return "cfbugs-issues.xml";
     }
 
     public String getDisplayName() {

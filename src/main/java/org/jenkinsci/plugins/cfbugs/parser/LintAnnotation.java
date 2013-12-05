@@ -96,8 +96,10 @@ public class LintAnnotation extends AbstractAnnotation {
         if (!errorLines.isEmpty()) {
             message.append("<div style='color:#d00'><b><pre>");
             for (String line : errorLines) {
+            	if(line != null){
                 message.append(line);
                 message.append('\n');
+            	}
             }
             message.append("</pre></b></div>");
         }
