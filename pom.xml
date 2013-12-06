@@ -8,7 +8,7 @@
     <relativePath>../analysis-pom/pom.xml</relativePath>
   </parent>
 
-  <artifactId>cfbugs</artifactId>
+  <artifactId>cflint</artifactId>
   <packaging>hpi</packaging>
   <name>CFBugs Plugin</name>
   <version>2.2-SNAPSHOT</version>
