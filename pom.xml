@@ -10,10 +10,10 @@
 
   <artifactId>cflint</artifactId>
   <packaging>hpi</packaging>
-  <name>CFBugs Plugin</name>
-  <version>2.2-SNAPSHOT</version>
-  <url>https://wiki.jenkins-ci.org/display/JENKINS/Android+Lint+Plugin</url>
-  <description>Parses CFBugs output and displays the results for analysis.</description>
+  <name>CFLint Plugin</name>
+  <version>0.2</version>
+  <url>https://github.com/ryaneberly/CFLint-plugin</url>
+  <description>Parses CFLint output and displays the results for analysis.</description>
   <developers>
     <developer>
       <id>orrc</id>
