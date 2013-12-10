@@ -1,5 +1,7 @@
- ![](/src/main/webapp/icons/CFBugs48x48.png ) CFLint-plugin
-=============
+
+
+ ![CFLint-Plugin](/src/main/webapp/CFLint-logo.jpg) 
+ 
 
 [CFLint](https://github.com/ryaneberly/CFLint/) parser plugin for Jenkins
 
