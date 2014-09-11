@@ -5,21 +5,20 @@
     <groupId>org.jvnet.hudson.plugins</groupId>
     <artifactId>analysis-pom</artifactId>
     <version>1.42</version>
-    <relativePath>../analysis-pom/pom.xml</relativePath>
   </parent>
 
-  <artifactId>cflint</artifactId>
+	<groupId>com.github.cflint.jenkinsci.cflint-plugin</groupId>
+	<artifactId>cflint-plugin</artifactId>
   <packaging>hpi</packaging>
   <name>CFLint Plugin</name>
   <version>0.2</version>
-  <url>https://github.com/ryaneberly/CFLint-plugin</url>
+	<url>https://wiki.jenkins-ci.org/display/JENKINS/CFLint+plugin</url>
   <description>Parses CFLint output and displays the results for analysis.</description>
   <developers>
     <developer>
-      <id>orrc</id>
-      <name>Christopher Orr</name>
-      <email>chris@orr.me.uk</email>
-      <timezone>1</timezone>
+			<id>ryaneberly</id>
+			<name>Ryan Eberly</name>
+			<email>ryaneberly@gmail.com</email>
     </developer>
   </developers>
 
@@ -50,5 +49,12 @@
       <url>http://repo.jenkins-ci.org/public/</url>
     </pluginRepository>
   </pluginRepositories>
+  
+  	<distributionManagement>
+		<repository>
+			<id>maven.jenkins-ci.org</id>
+			<url>http://maven.jenkins-ci.org:8081/content/repositories/releases/</url>
+		</repository>
+	</distributionManagement>
 
 </project>
