@@ -1,54 +1,54 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-  <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>org.jvnet.hudson.plugins</groupId>
-    <artifactId>analysis-pom</artifactId>
-    <version>1.42</version>
-  </parent>
+	<parent>
+		<groupId>org.jvnet.hudson.plugins</groupId>
+		<artifactId>analysis-pom</artifactId>
+		<version>1.42</version>
+	</parent>
 
-	<groupId>com.github.cflint.jenkinsci.cflint-plugin</groupId>
-	<artifactId>cflint-plugin</artifactId>
-  <packaging>hpi</packaging>
-  <name>CFLint Plugin</name>
-  <version>0.2</version>
+	<artifactId>CFLint</artifactId>
+	<packaging>hpi</packaging>
+	<name>CFLint Plugin</name>
+	<version>0.2</version>
 	<url>https://wiki.jenkins-ci.org/display/JENKINS/CFLint+plugin</url>
-  <description>Parses CFLint output and displays the results for analysis.</description>
-  <developers>
-    <developer>
+	<description>Parses CFLint output and displays the results for analysis.</description>
+	<developers>
+		<developer>
 			<id>ryaneberly</id>
 			<name>Ryan Eberly</name>
 			<email>ryaneberly@gmail.com</email>
-    </developer>
-  </developers>
+		</developer>
+	</developers>
 
-  <dependencies>
-    <dependency>
-      <groupId>org.jvnet.hudson.plugins</groupId>
-      <artifactId>analysis-core</artifactId>
-      <version>1.49</version>
-    </dependency>
-  </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>org.jvnet.hudson.plugins</groupId>
+			<artifactId>analysis-core</artifactId>
+			<version>1.49</version>
+		</dependency>
+	</dependencies>
 
-  <scm>
-    <connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
-    <developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
-    <url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
-  </scm>
+	<scm>
+		<connection>scm:git:git://github.com/jenkinsci/${project.artifactId}-plugin.git</connection>
+		<developerConnection>scm:git:git@github.com:jenkinsci/${project.artifactId}-plugin.git</developerConnection>
+		<url>https://github.com/jenkinsci/${project.artifactId}-plugin</url>
+	</scm>
 
-  <repositories>
-    <repository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
-    </repository>
-  </repositories>
+	<repositories>
+		<repository>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
+		</repository>
+	</repositories>
 
-  <pluginRepositories>
-    <pluginRepository>
-      <id>repo.jenkins-ci.org</id>
-      <url>http://repo.jenkins-ci.org/public/</url>
-    </pluginRepository>
-  </pluginRepositories>
-  
+	<pluginRepositories>
+		<pluginRepository>
+			<id>repo.jenkins-ci.org</id>
+			<url>http://repo.jenkins-ci.org/public/</url>
+		</pluginRepository>
+	</pluginRepositories>
+
 
 </project>
