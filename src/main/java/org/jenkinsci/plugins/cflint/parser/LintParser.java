@@ -27,13 +27,14 @@ public class LintParser extends AbstractAnnotationParser {
 	public static final String FILENAME_UNKNOWN = "(none)";
 
 	private static final String SEVERITY_FATAL = "Fatal";
-	
+	private static final String SEVERITY_CRITICAL = "Critical";
 	private static final String SEVERITY_ERROR = "Error";
-	
-	private static final String SEVERITY_INFORMATIONAL = "Information";
-	private static final String SEVERITY_INFO = "Info";
+
 	private static final String SEVERITY_WARNING = "Warning";
-	private static final String SEVERITY_WARN = "Warn";
+	
+	private static final String SEVERITY_CAUTION = "Caution";
+	private static final String SEVERITY_INFO = "Info";
+	private static final String SEVERITY_COSMETIC = "Cosmetic";
 	
 
 	private static final long serialVersionUID = 7110868408124058985L;
@@ -200,13 +201,17 @@ public class LintParser extends AbstractAnnotationParser {
 	 * @return Corresponding priority value.
 	 */
 	private Priority getPriority(final String severity) {
-		if (SEVERITY_FATAL.equalsIgnoreCase(severity) || SEVERITY_ERROR.equalsIgnoreCase(severity)) {
+		if (SEVERITY_FATAL.equalsIgnoreCase(severity) 
+			|| SEVERITY_ERROR.equalsIgnoreCase(severity) 
+			|| SEVERITY_CRITICAL.equalsIgnoreCase(severity)) {
 			return Priority.HIGH;
 		}
-		if (SEVERITY_WARNING.equalsIgnoreCase(severity) || SEVERITY_WARN.equalsIgnoreCase(severity)) {
+		if (SEVERITY_WARNING.equalsIgnoreCase(severity)) {
 			return Priority.NORMAL;
 		}
-		if (SEVERITY_INFORMATIONAL.equalsIgnoreCase(severity) || SEVERITY_INFO.equalsIgnoreCase(severity)) {
+		if (SEVERITY_CAUTION.equalsIgnoreCase(severity) 
+			|| SEVERITY_INFO.equalsIgnoreCase(severity)
+			|| SEVERITY_COSMETIC.equalsIgnoreCase(severity)) {
 			return Priority.LOW;
 		}
 		return Priority.NORMAL;
