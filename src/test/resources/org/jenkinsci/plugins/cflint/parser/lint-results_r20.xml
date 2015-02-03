@@ -19,7 +19,7 @@
 	</issue>
 
 	<!-- Should be mapped to "LOW" priority -->
-	<issue id="PxUsage" severity="Info"
+	<issue id="PxUsage" severity="Information"
 		message="Avoid using &quot;px&quot; as units; use &quot;dp&quot; instead">
 		<location file="res/layout/foo.xml" line="19" column="11" />
 	</issue>
