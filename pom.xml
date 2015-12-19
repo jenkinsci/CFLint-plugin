@@ -14,7 +14,7 @@
 	<artifactId>CFLint</artifactId>
 	<packaging>hpi</packaging>
 	<name>CFLint Plugin</name>
-	<version>0.4-SNAPSHOT</version>
+	<version>0.5.0-SNAPSHOT</version>
 	<url>https://wiki.jenkins-ci.org/display/JENKINS/CFLint+plugin</url>
 	<description>Parses CFLint output and displays the results for analysis.</description>
 	<developers>
