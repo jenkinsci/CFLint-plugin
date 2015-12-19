@@ -3,6 +3,7 @@ package org.jenkinsci.plugins.cflint;
 import org.jenkinsci.plugins.cflint.Messages;
 
 import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.plugins.analysis.core.AbstractResultAction;
 import hudson.plugins.analysis.core.HealthDescriptor;
 import hudson.plugins.analysis.core.PluginDescriptor;
@@ -28,6 +29,16 @@ public class LintResultAction extends AbstractResultAction<LintResult> {
      */
     public LintResultAction(final AbstractBuild<?, ?> owner,
             final HealthDescriptor healthDescriptor, final LintResult result) {
+        super(owner, new LintHealthDescriptor(healthDescriptor), result);
+    }
+    /**
+     * Creates a new instance of {@link LintResultAction}.
+     *
+     * @param owner Build owning this action.
+     * @param healthDescriptor Health descriptor to use.
+     * @param result The Lint result for this build.
+     */
+    public LintResultAction(final Run<?, ?> owner, final HealthDescriptor healthDescriptor, final LintResult result) {
         super(owner, new LintHealthDescriptor(healthDescriptor), result);
     }
 

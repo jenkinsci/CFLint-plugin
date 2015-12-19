@@ -1,6 +1,7 @@
 package org.jenkinsci.plugins.cflint;
 
 import hudson.model.AbstractBuild;
+import hudson.model.Run;
 import hudson.plugins.analysis.core.BuildHistory;
 import hudson.plugins.analysis.core.BuildResult;
 import hudson.plugins.analysis.core.ParserResult;
@@ -31,8 +32,48 @@ public class LintResult extends BuildResult {
     public LintResult(final AbstractBuild<?, ?> build, final String defaultEncoding,
             final ParserResult result) {
         super(build, defaultEncoding, result);
+        serializeAnnotations(result.getAnnotations());
+    }
+    
+    /**
+     * Creates a new instance of {@link LintResult}.
+     *
+     * @param build
+     *            the current build as owner of this action
+     * @param defaultEncoding
+     *            the default encoding to be used when reading and parsing files
+     * @param result
+     *            the parsed result with all annotations
+     * @param usePreviousBuildAsReference
+     *            determines whether to use the previous build as the reference
+     *            build
+     * @param useStableBuildAsReference
+     *            determines whether only stable builds should be used as
+     *            reference builds or not
+     */
+    public LintResult(final Run<?, ?> build, final String defaultEncoding, final ParserResult result,
+                     final boolean usePreviousBuildAsReference, final boolean useStableBuildAsReference) {
+        this(build, defaultEncoding, result, usePreviousBuildAsReference, useStableBuildAsReference, LintResultAction.class);
     }
 
+    /**
+     * Creates a new instance of {@link LintResult}.
+     *
+     * @param build the current build as owner of this action
+     * @param defaultEncoding the default encoding to be used when reading and parsing files
+     * @param result the parsed result with all annotations
+     * @param usePreviousBuildAsReference the value of usePreviousBuildAsReference
+     * @param useStableBuildAsReference determines whether only stable builds should be used as reference builds or not
+     * @param actionType the type of the result action
+     */
+    protected LintResult(final Run<?, ?> build,
+                        final String defaultEncoding, final ParserResult result,
+                        final boolean usePreviousBuildAsReference,
+                        final boolean useStableBuildAsReference,
+                        final Class<? extends ResultAction<LintResult>> actionType) {
+        super(build, new BuildHistory(build, actionType, usePreviousBuildAsReference, useStableBuildAsReference), result, defaultEncoding);
+        serializeAnnotations(result.getAnnotations());
+    }
     /**
      * Creates a new instance of {@link LintResult}.
      *
@@ -44,6 +85,7 @@ public class LintResult extends BuildResult {
     public LintResult(final AbstractBuild<?, ?> build, final String defaultEncoding,
             final ParserResult result, final BuildHistory history) {
         super(build, defaultEncoding, result, history);
+        serializeAnnotations(result.getAnnotations());
     }
 
     @Override

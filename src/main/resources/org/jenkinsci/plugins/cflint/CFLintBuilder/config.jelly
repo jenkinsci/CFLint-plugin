@@ -1,0 +1,14 @@
+<j:jelly xmlns:j="jelly:core" xmlns:f="/lib/form">
+  <f:entry title="${%CFLint install folder}" field="cflintFolder">
+        <f:textbox/>
+  </f:entry>
+  <f:entry title="${%CFLint folder to scan}" field="folder">
+        <f:textbox/>
+  </f:entry>
+  <f:entry title="${%CFLint excludes file}" field="cflintExcludesFile">
+        <f:textbox/>
+  </f:entry>
+  <f:entry title="${%CFLint other command line args}" field="otherArgs">
+        <f:textbox/>
+  </f:entry>
+</j:jelly>

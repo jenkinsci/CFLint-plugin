@@ -4,6 +4,7 @@ import hudson.plugins.analysis.core.AbstractAnnotationParser;
 import hudson.plugins.analysis.util.model.FileAnnotation;
 import hudson.plugins.analysis.util.model.Priority;
 
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
@@ -17,6 +18,8 @@ import org.apache.commons.digester.Digester;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.jenkinsci.plugins.cflint.Messages;
 import org.xml.sax.SAXException;
+
+import groovy.util.logging.Log;
 
 /** A parser for CFLint XML files. */
 public class LintParser extends AbstractAnnotationParser {
@@ -53,6 +56,12 @@ public class LintParser extends AbstractAnnotationParser {
 	public Collection<FileAnnotation> parse(final InputStream file, final String moduleName)
 			throws InvocationTargetException {
 		try {
+			FileOutputStream f = new FileOutputStream("c:\\temp\\xxx.txt",true);
+			f.write("read file".getBytes());
+			f.write(moduleName.getBytes());
+			f.write("\r\n".getBytes());
+			f.flush();
+			f.close();
 			final Digester digester = new Digester();
 			digester.setValidating(false);
 			digester.setClassLoader(LintParser.class.getClassLoader());

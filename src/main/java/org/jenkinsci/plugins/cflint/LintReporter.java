@@ -26,7 +26,7 @@ public class LintReporter extends HealthAwareReporter<LintResult> {
     private static final String PLUGIN_NAME = "CFLint";
 
     /** Default filename pattern. */
-    private static final String DEFAULT_PATTERN = "**/cflint-plugin-results.xml";
+    private static final String DEFAULT_PATTERN = "**/cflint-result.xml";
 
     private static final long serialVersionUID = 3712982963880076975L;
 

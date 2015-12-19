@@ -18,7 +18,7 @@ public final class CFLintDescriptor extends PluginDescriptor {
     public static final String PLUGIN_NAME = "CFLint";
 
     /** Used to specify location of resources. */
-    public static final String PLUGIN_ROOT = "/plugin/cflint/";
+    public static final String PLUGIN_ROOT = "/plugin/" + PLUGIN_NAME + "/";
 
     /** Icon to use for the result and project action. */
     private static final String ACTION_ICON = PLUGIN_ROOT + "icons/CFBugs24x24.png";
@@ -37,7 +37,7 @@ public final class CFLintDescriptor extends PluginDescriptor {
         return PLUGIN_NAME;
     }
 
-    @Override
+    @Override	
     public String getPluginRoot() {
         return PLUGIN_ROOT;
     }

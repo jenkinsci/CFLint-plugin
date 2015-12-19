@@ -1,18 +1,22 @@
 package org.jenkinsci.plugins.cflint;
 
+import hudson.FilePath;
 import hudson.Launcher;
 import hudson.matrix.MatrixAggregator;
 import hudson.matrix.MatrixBuild;
 import hudson.model.Action;
 import hudson.model.BuildListener;
+import hudson.model.Run;
 import hudson.model.AbstractBuild;
 import hudson.model.AbstractProject;
 import hudson.plugins.analysis.core.BuildResult;
 import hudson.plugins.analysis.core.FilesParser;
 import hudson.plugins.analysis.core.HealthAwarePublisher;
 import hudson.plugins.analysis.core.ParserResult;
+import hudson.plugins.analysis.util.FileFinder;
 import hudson.plugins.analysis.util.PluginLogger;
 
+import java.io.File;
 import java.io.IOException;
 
 import org.apache.commons.lang.StringUtils;
@@ -27,7 +31,7 @@ public class LintPublisher extends HealthAwarePublisher {
     private static final String PLUGIN_NAME = "CFLint";
 
     /** Default filename pattern. */
-    private static final String DEFAULT_PATTERN = "**/cflint-plugin-results.xml";
+    private static final String DEFAULT_PATTERN = "**/cflint-result.xml";
 
     private static final long serialVersionUID = 3435696173660003622L;
 
@@ -102,18 +106,38 @@ public class LintPublisher extends HealthAwarePublisher {
         return new LintProjectAction(project);
     }
 
+//    @Override
+//    public BuildResult perform(final AbstractBuild<?, ?> build, final PluginLogger logger)
+//            throws InterruptedException, IOException {
+//        logger.log(Messages.CFLint_Publisher_CollectingFiles());
+//        FilesParser lintCollector = new FilesParser(PLUGIN_NAME,
+//                StringUtils.defaultIfEmpty(getPattern(), DEFAULT_PATTERN),
+//                new LintParser(getDefaultEncoding()), shouldDetectModules(), isMavenBuild(build));
+//        ParserResult project = build.getWorkspace().act(lintCollector);
+//        logger.logLines(project.getLogMessages());
+//
+//        LintResult result = new LintResult(build, getDefaultEncoding(), project);
+//        build.addAction(new LintResultAction(build, this, result));
+//        for(String x : result.getErrors()){
+//        	logger.log(x);
+//        }
+//
+//        return result;
+//    }
+    
     @Override
-    public BuildResult perform(final AbstractBuild<?, ?> build, final PluginLogger logger)
+    public BuildResult perform(final Run<?, ?> build, final FilePath workspace, final PluginLogger logger)
             throws InterruptedException, IOException {
         logger.log(Messages.CFLint_Publisher_CollectingFiles());
-        FilesParser lintCollector = new FilesParser(PLUGIN_NAME,
+        FilesParser parser = new FilesParser(PLUGIN_NAME,
                 StringUtils.defaultIfEmpty(getPattern(), DEFAULT_PATTERN),
                 new LintParser(getDefaultEncoding()), shouldDetectModules(), isMavenBuild(build));
-        ParserResult project = build.getWorkspace().act(lintCollector);
-        logger.logLines(project.getLogMessages());
 
-        LintResult result = new LintResult(build, getDefaultEncoding(), project);
-        build.getActions().add(new LintResultAction(build, this, result));
+        ParserResult project = workspace.act(parser);
+        logger.logLines(project.getLogMessages());
+        
+        LintResult result = new LintResult(build, getDefaultEncoding(), project, false, false);
+        build.addAction(new LintResultAction(build, this, result));
 
         return result;
     }
@@ -125,7 +149,10 @@ public class LintPublisher extends HealthAwarePublisher {
 
     @Override
     public CFLintDescriptor getDescriptor() {
-        return (CFLintDescriptor) super.getDescriptor();
+        //return (CFLintDescriptor) super.getDescriptor();
+    	return new CFLintDescriptor();
     }
+    
+
 
 }
