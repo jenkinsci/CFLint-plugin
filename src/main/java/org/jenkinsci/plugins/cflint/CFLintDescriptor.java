@@ -47,4 +47,9 @@ public final class CFLintDescriptor extends PluginDescriptor {
         return ACTION_ICON;
     }
 
+
+    @Override
+    public String getSummaryIconUrl() {
+        return PLUGIN_ROOT + "icons/CFBugs48x48.png";
+    }
 }

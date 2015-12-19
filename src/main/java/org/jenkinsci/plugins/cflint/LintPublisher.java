@@ -23,6 +23,7 @@ import org.apache.commons.lang.StringUtils;
 import org.jenkinsci.plugins.cflint.Messages;
 import org.jenkinsci.plugins.cflint.parser.LintParser;
 import org.kohsuke.stapler.DataBoundConstructor;
+import org.kohsuke.stapler.DataBoundSetter;
 
 /** Publishes the results of parsing an Android lint file. */
 public class LintPublisher extends HealthAwarePublisher {
@@ -36,7 +37,7 @@ public class LintPublisher extends HealthAwarePublisher {
     private static final long serialVersionUID = 3435696173660003622L;
 
     /** Ant fileset pattern of files to work with. */
-    private final String pattern;
+    private String pattern;
 
     /**
      * Constructor.
@@ -104,6 +105,14 @@ public class LintPublisher extends HealthAwarePublisher {
     @Override
     public Action getProjectAction(final AbstractProject<?, ?> project) {
         return new LintProjectAction(project);
+    }
+    
+    /**
+     * Sets the Ant file-set pattern of files to work with.
+     */
+    @DataBoundSetter
+    public void setPattern(final String pattern) {
+        this.pattern = pattern;
     }
 
 //    @Override
