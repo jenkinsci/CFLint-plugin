@@ -14,12 +14,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.digester.Digester;
+import org.apache.commons.digester3.Digester;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.jenkinsci.plugins.cflint.Messages;
 import org.xml.sax.SAXException;
 
 import groovy.util.logging.Log;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 /** A parser for CFLint XML files. */
 public class LintParser extends AbstractAnnotationParser {
@@ -63,6 +65,17 @@ public class LintParser extends AbstractAnnotationParser {
 			f.flush();
 			f.close();
 			final Digester digester = new Digester();
+			if (!Boolean.getBoolean(this.getClass().getName() + ".UNSAFE")) {
+				digester.setXIncludeAware(false);
+				try {
+					digester.setFeature("http://apache.org/xml/features/disallow-doctype-decl", true);
+					digester.setFeature("http://xml.org/sax/features/external-general-entities", false);
+					digester.setFeature("http://xml.org/sax/features/external-parameter-entities", false);
+					digester.setFeature("http://apache.org/xml/features/nonvalidating/load-external-dtd", false);
+				} catch (ParserConfigurationException ex) {
+					throw new SAXException("Failed to securely configure xml digester parser", ex);
+				}
+			}
 			digester.setValidating(false);
 			digester.setClassLoader(LintParser.class.getClassLoader());
 
